@@ -28,7 +28,7 @@ What is sent as the message:
   "brightness": 0.15
 }
  
- command: one of "Black" "Red" "Green" "Blue" "Rainbow"
+ command: one of "Black" "Off" "Red" "Yellow" "Green" "Blue" "Rainbow"
 
  '''
 
@@ -42,7 +42,6 @@ import threading
 import time
 from uuid import uuid4
 
-
 import logging
 import time
 import argparse
@@ -55,7 +54,8 @@ except ImportError:
     print("secrets are kept in clientsecrets.py, please add them there!")
     raise
 
-AllowedCommands = ['Blank', 'Red', 'Blue', 'Green', 'Rainbow']
+# Nothing means ignore the command
+AllowedCommands = ['Black', 'Off', 'Red', 'Yellow', 'Green', 'Blue', 'Rainbow', 'Nothing']
 
 # Custom MQTT message callback
 def customCallback(client, userdata, message):
@@ -69,7 +69,7 @@ def customCallback(client, userdata, message):
 # Read in command-line parameters
 parser = argparse.ArgumentParser()
 
-parser.add_argument("-c", "--command", action="store", dest="command", default="Blank",
+parser.add_argument("-c", "--command", action="store", dest="command", default="Nothing",
                     help="Operation modes: %s"%str(AllowedCommands))
 parser.add_argument("-r", "--red", action="store", dest="red", default=0,
                     help="Red value from 0 to 255", type=int)

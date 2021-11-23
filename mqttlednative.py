@@ -8,16 +8,9 @@ What is sent:
   "brightness": 0.15
 }
  
- command: one of "Black" "Red" "Green" "Blue" "Rainbow"
+ command: one of "Black" "Red" "Green" "Blue" " Yellow" "Rainbow" "Off"
  
  '''
-
-# from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
-# import logging
-# import time
-# import json
-# import blinkt
-
 import json
 import logging
 import time
@@ -59,14 +52,17 @@ def customCallback(client, userdata, message):
         
     
     # specific commands
-    if command == "Green" :
-        blinkt.set_all(0, 255, 0, 0.2)
-        blinkt.show()
     if command == "Blue" :
-        blinkt.set_all(0, 0, 255, 0.2)
+        blinkt.set_all(0, 0, 255)
         blinkt.show()
     if command == "Red" :
-        blinkt.set_all(255, 0, 0, 0.2)
+        blinkt.set_all(255, 0, 0)
+        blinkt.show()
+    if command == "Yellow" :
+        blinkt.set_all(255, 127, 0)
+        blinkt.show()
+    if command == "Green" :
+        blinkt.set_all(0, 255, 0)
         blinkt.show()
     if command == "Black" :
         blinkt.set_all(0, 0, 0, 0.0)
