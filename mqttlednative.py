@@ -18,6 +18,7 @@ import time
 import blinkt
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 
+
 # if set to false, the lights will stay on when the program exits
 # blinkt.set_clear_on_exit(False)
 
